@@ -40,7 +40,7 @@ export function useReveal(scope: RefObject<HTMLElement | null>, deps: Dependency
     const ctx = gsap.context(() => {
       root.querySelectorAll<HTMLElement>("[data-reveal]").forEach((node) => {
         const trigger = { trigger: node, start: "top 90%", once: true };
-        if (node.dataset.reveal === "media" && desktop) {
+        if (node.dataset["reveal"] === "media" && desktop) {
           const inner = node.querySelector<HTMLElement>("[data-reveal-inner]");
           gsap.fromTo(
             node,

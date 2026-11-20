@@ -5,7 +5,7 @@ import { CATEGORIES } from "@/content/categories";
 import { site } from "@/content/site";
 import { Button } from "@/components/ui/button";
 import { getFeaturedProjects, hasPublishedWork } from "@/lib/portfolio";
-import { getGsap, isDesktop, prefersReducedMotion, useIsoLayoutEffect } from "@/lib/motion";
+import { getGsap, isDesktop, prefersReducedMotion, useIsoLayoutEffect, useReveal } from "@/lib/motion";
 import { Showreel } from "./Showreel";
 import { FeatureExpand } from "./FeatureExpand";
 import { ProjectCard } from "./ProjectCard";
@@ -25,7 +25,7 @@ export function Hero() {
       const tl = gsap.timeline({ defaults: { ease: "expo.out" } });
       tl.from("[data-hero-word]", { yPercent: 110, duration: desktop ? 1.2 : 0.9, stagger: 0.07 })
         .from("[data-hero-fade]", { autoAlpha: 0, y: desktop ? 16 : 0, duration: 0.9, stagger: 0.08 }, "-=0.8")
-        .from("[data-hero-reel]", { autoAlpha: 0, clipPath: desktop ? "inset(0% 0% 100% 0%)" : undefined, duration: 1.4, clearProps: "clipPath" }, "-=0.9");
+        .from("[data-hero-reel]", desktop ? { autoAlpha: 0, clipPath: "inset(0% 0% 100% 0%)", duration: 1.4, clearProps: "clipPath" } : { autoAlpha: 0, duration: 0.8 }, "-=0.9");
     }, ref);
     return () => ctx.revert();
   }, []);
@@ -75,7 +75,7 @@ function SectionHeading({ index, title, id, children }: { index: string; title: 
     <div className="container-x grid gap-6 border-t border-line pt-8 md:grid-cols-12 md:pt-10">
       <p className="text-eyebrow text-muted-foreground md:col-span-3" data-reveal>{index}</p>
       <div className="md:col-span-9">
-        <h2 id={id} className="text-headline text-foreground" data-reveal>{title}</h2>
+        <h2 id={id} tabIndex={-1} className="text-headline text-foreground" data-reveal>{title}</h2>
         {children}
       </div>
     </div>
@@ -87,7 +87,7 @@ export function SelectedWork() {
   const [first, ...rest] = getFeaturedProjects();
   return (
     <section ref={ref} aria-labelledby="selected-title" className="mt-28 md:mt-40">
-      <SectionHeading index="(01) Selected work" title="Selected work" id="selected-title" />
+      <SectionHeading index="(01)" title="Selected work" id="selected-title" />
       <div className="mt-12 md:mt-16">{first && <FeatureExpand project={first} />}</div>
       <div className="container-x mt-20 grid gap-16 md:mt-28 md:grid-cols-12 md:gap-x-8">
         {rest[0] && (
@@ -114,7 +114,7 @@ export function SelectedWork() {
 export function Services() {
   return (
     <section aria-labelledby="services" className="mt-28 md:mt-40">
-      <SectionHeading index="(02) Services" title="Services" id="services">
+      <SectionHeading index="(02)" title="Services" id="services">
         <p className="mt-6 max-w-xl text-lede text-muted-foreground" data-reveal>
           Seven disciplines. One practice. Pick one or combine them.
         </p>
@@ -159,7 +159,7 @@ export function About() {
   const { portrait } = site;
   return (
     <section aria-labelledby="about" className="mt-28 md:mt-40">
-      <SectionHeading index="(03) About" title="About" id="about" />
+      <SectionHeading index="(03)" title="About" id="about" />
       <div className="container-x mt-12 grid gap-12 md:mt-16 md:grid-cols-12 md:gap-8">
         <div className="md:col-span-5 lg:col-span-4 md:col-start-1 lg:col-start-4">
           {portrait.src ? (
@@ -205,12 +205,12 @@ export function About() {
   );
 }
 
-export function Contact({ preselect }: { preselect?: string }) {
+export function Contact({ preselect }: { preselect?: string | undefined }) {
   const contacts = getContactLinks();
   const socials = getSocialLinks();
   return (
     <section aria-labelledby="contact" className="mt-28 pb-28 md:mt-40 md:pb-40">
-      <SectionHeading index="(04) Contact" title="Let’s talk about your project." id="contact" />
+      <SectionHeading index="(04)" title="Let’s talk about your project." id="contact" />
       <div className="container-x mt-12 grid gap-14 md:mt-16 md:grid-cols-12 md:gap-8">
         <div className="md:col-span-3">
           {(contacts.length > 0 || socials.length > 0) && (
@@ -246,10 +246,9 @@ export function Contact({ preselect }: { preselect?: string }) {
   );
 }
 
-export function HomePage({ preselect }: { preselect?: string }) {
-  const ref = useRef<HTMLDivElement>(null);
+export function HomePage({ preselect }: { preselect?: string | undefined }) {
   return (
-    <div ref={ref}>
+    <div>
       <Hero />
       <RevealScope>
         <SelectedWork />
@@ -261,7 +260,6 @@ export function HomePage({ preselect }: { preselect?: string }) {
   );
 }
 
-import { useReveal } from "@/lib/motion";
 function RevealScope({ children }: { children: React.ReactNode }) {
   const ref = useRef<HTMLDivElement>(null);
   useReveal(ref);

@@ -37,7 +37,7 @@ export function Showreel() {
           <div className="absolute inset-0 flex flex-col justify-between p-5 md:p-8">
             <div className="flex items-start justify-between text-eyebrow text-muted-foreground">
               <span>Showreel</span>
-              <span>Branding · Campaigns · Motion · Digital</span>
+              <span className="hidden sm:inline">Branding · Campaigns · Motion · Digital</span>
             </div>
             <div className="flex items-end justify-between gap-6">
               <p aria-hidden={!src} className="text-[clamp(2.5rem,9vw,8.5rem)] font-bold leading-[0.85] tracking-[-0.06em] text-foreground">

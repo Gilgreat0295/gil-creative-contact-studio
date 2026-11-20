@@ -5,8 +5,9 @@ import { Button } from "@/components/ui/button";
 import { SERVICE_OPTIONS, buildBrief, buildMailto, enquirySchema, type Enquiry } from "@/lib/enquiry";
 
 const STORAGE_KEY = "gcc-enquiry-draft";
-const EMPTY: Enquiry = { name: "", email: "", service: "", brief: "" };
-type Errors = Partial<Record<keyof Enquiry, string>>;
+type FormValues = { name: string; email: string; service: string; brief: string };
+const EMPTY: FormValues = { name: "", email: "", service: "", brief: "" };
+type Errors = Partial<Record<keyof FormValues, string>>;
 
 async function copyText(text: string): Promise<boolean> {
   try {
@@ -33,8 +34,8 @@ async function copyText(text: string): Promise<boolean> {
   }
 }
 
-export function ContactForm({ preselect }: { preselect?: string }) {
-  const [values, setValues] = useState<Enquiry>(EMPTY);
+export function ContactForm({ preselect }: { preselect?: string | undefined }) {
+  const [values, setValues] = useState<FormValues>(EMPTY);
   const [errors, setErrors] = useState<Errors>({});
   const [status, setStatus] = useState<{ tone: "ok" | "error"; text: string } | null>(null);
   const loaded = useRef(false);
@@ -68,7 +69,7 @@ export function ContactForm({ preselect }: { preselect?: string }) {
     }
   }, [values]);
 
-  const update = (field: keyof Enquiry) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const update = (field: keyof FormValues) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setValues((v) => ({ ...v, [field]: e.target.value }));
     if (errors[field]) setErrors((er) => ({ ...er, [field]: undefined }));
     setStatus(null);
@@ -82,7 +83,7 @@ export function ContactForm({ preselect }: { preselect?: string }) {
     }
     const next: Errors = {};
     for (const issue of result.error.issues) {
-      const key = issue.path[0] as keyof Enquiry;
+      const key = issue.path[0] as keyof FormValues;
       if (!next[key]) next[key] = issue.message;
     }
     setErrors(next);
@@ -110,13 +111,13 @@ export function ContactForm({ preselect }: { preselect?: string }) {
 
   const field = "w-full border border-input bg-surface px-4 text-base text-foreground placeholder:text-muted-foreground/70 transition-colors duration-300 hover:border-line-strong focus-visible:border-signal focus-visible:outline-none aria-[invalid=true]:border-destructive";
   const label = "mb-2 block text-eyebrow text-muted-foreground";
-  const err = (k: keyof Enquiry) =>
+  const err = (k: keyof FormValues) =>
     errors[k] ? (
       <p id={`${formId}-${k}-error`} className="mt-2 text-sm text-destructive">
         {errors[k]}
       </p>
     ) : null;
-  const a11y = (k: keyof Enquiry) => ({
+  const a11y = (k: keyof FormValues) => ({
     id: `${formId}-${k}`,
     "aria-invalid": errors[k] ? true : undefined,
     "aria-describedby": errors[k] ? `${formId}-${k}-error` : undefined,

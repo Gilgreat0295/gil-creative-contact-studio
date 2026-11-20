@@ -1,23 +1,33 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { isCategorySlug, type CategorySlug } from "@/content/categories";
+import { HomePage } from "@/components/site/HomeSections";
 
-// The home route ships no og:image, so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
+type HomeSearch = { service?: CategorySlug | undefined };
+
 export const Route = createFileRoute("/")({
+  validateSearch: (search: Record<string, unknown>): HomeSearch =>
+    ({ service: isCategorySlug(search["service"]) ? search["service"] : undefined }),
+  head: () => ({
+    meta: [
+      { title: "Gil Creative Co. — Design with a point of view" },
+      {
+        name: "description",
+        content:
+          "Gil Creative Co. is the independent practice of Gilbert Gospel Jacob: branding, campaigns, motion, video and digital design. Port Harcourt, Nigeria and remote.",
+      },
+      { property: "og:title", content: "Gil Creative Co. — Design with a point of view" },
+      {
+        property: "og:description",
+        content: "Visual identities, campaigns, motion, video and websites by Gilbert Gospel Jacob. Port Harcourt, Nigeria and remote.",
+      },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
-  return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
-  );
+  const { service } = Route.useSearch();
+  return <HomePage preselect={service} />;
 }

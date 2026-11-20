@@ -28,3 +28,12 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+## Project rules
+
+- All portfolio content (projects, categories, contact details, showreel, portrait) lives in `src/content/`; pages and components only read it. Why: work can be added or re-tagged without touching templates.
+- Categories in `src/content/categories.ts` are the single taxonomy for Services, Work filters and the enquiry form. Why: names must match everywhere.
+- Work filters only exist for categories with published projects (`src/lib/portfolio.ts`). Why: no empty filter states.
+- Route `validateSearch` must always return every key (set `undefined` to clear). Why: TanStack merges raw params with the validated result, so omitted keys leak invalid values.
+- Media goes through `MediaFrame`; missing `src` renders a text-led cover, labelled only in dev. Why: no invented client imagery and no layout shift.
+- Animation (GSAP/ScrollTrigger/Lenis) only enhances already-visible content and is skipped under prefers-reduced-motion. Why: the site must work when motion is off or fails.

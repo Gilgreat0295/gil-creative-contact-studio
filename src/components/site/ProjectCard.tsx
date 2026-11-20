@@ -7,12 +7,12 @@ import { cn } from "@/lib/utils";
 
 type Props = {
   project: Project;
-  aspect?: MediaAspect;
-  priority?: boolean;
-  sizes?: string;
-  reveal?: boolean;
-  headingLevel?: "h2" | "h3";
-  className?: string;
+  aspect?: MediaAspect | undefined;
+  priority?: boolean | undefined;
+  sizes?: string | undefined;
+  reveal?: boolean | undefined;
+  headingLevel?: "h2" | "h3" | undefined;
+  className?: string | undefined;
 };
 
 export function ProjectCard({ project, aspect, priority, sizes, reveal = true, headingLevel = "h3", className }: Props) {

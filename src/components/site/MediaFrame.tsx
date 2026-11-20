@@ -14,15 +14,17 @@ export const ASPECT_CLASS: Record<MediaAspect, string> = {
 type Props = {
   media: Media;
   /** Project name, shown on the text-led cover when media is missing. */
-  title?: string;
-  palette?: string[];
-  aspect?: MediaAspect;
-  priority?: boolean;
-  sizes?: string;
+  title?: string | undefined;
+  palette?: string[] | undefined;
+  aspect?: MediaAspect | undefined;
+  priority?: boolean | undefined;
+  sizes?: string | undefined;
   /** Zoom the image slightly when a parent .group is hovered. */
-  zoom?: boolean;
-  reveal?: boolean;
-  className?: string;
+  zoom?: boolean | undefined;
+  reveal?: boolean | undefined;
+  /** Centre the text-led cover (used where the frame is cropped by motion). */
+  centerCover?: boolean | undefined;
+  className?: string | undefined;
 };
 
 /**
@@ -30,7 +32,7 @@ type Props = {
  * Missing media renders a clean, text-led cover; in the build preview it also
  * shows what file belongs there.
  */
-export function MediaFrame({ media, title, palette, aspect, priority, sizes, zoom, reveal = true, className }: Props) {
+export function MediaFrame({ media, title, palette, aspect, priority, sizes, zoom, reveal = true, centerCover, className }: Props) {
   const shape = ASPECT_CLASS[aspect ?? media.aspect];
   return (
     <div
@@ -39,14 +41,14 @@ export function MediaFrame({ media, title, palette, aspect, priority, sizes, zoo
     >
       <div data-reveal-inner className="absolute inset-0">
         <div className={cn("absolute inset-0", zoom && "media-zoom")}>
-          {media.src ? <MediaContent media={media} priority={priority} sizes={sizes} /> : <EmptyFrame media={media} title={title} palette={palette} />}
+          {media.src ? <MediaContent media={media} priority={priority} sizes={sizes} /> : <EmptyFrame media={media} title={title} palette={palette} center={centerCover} />}
         </div>
       </div>
     </div>
   );
 }
 
-function MediaContent({ media, priority, sizes }: { media: Media; priority?: boolean; sizes?: string }) {
+function MediaContent({ media, priority, sizes }: { media: Media; priority?: boolean | undefined; sizes?: string | undefined }) {
   if (media.kind === "video") {
     return (
       <video
@@ -76,10 +78,10 @@ function MediaContent({ media, priority, sizes }: { media: Media; priority?: boo
   );
 }
 
-function EmptyFrame({ media, title, palette }: { media: Media; title?: string; palette?: string[] }) {
+function EmptyFrame({ media, title, palette, center }: { media: Media; title?: string | undefined; palette?: string[] | undefined; center?: boolean | undefined }) {
   const isDev = import.meta.env.DEV;
   return (
-    <div aria-hidden="true" className="frame-grid absolute inset-0 flex flex-col justify-between p-4 md:p-6">
+    <div aria-hidden="true" className={cn("frame-grid absolute inset-0 flex flex-col justify-between p-4 md:p-6", center && "px-[24%] py-[9%]")}>
       <div className="flex items-start justify-between gap-4 text-eyebrow text-muted-foreground">
         <span>{media.kind === "video" ? "Video" : "Image"}</span>
         {isDev && (
@@ -89,7 +91,7 @@ function EmptyFrame({ media, title, palette }: { media: Media; title?: string; p
         )}
       </div>
       {title && (
-        <p className="max-w-[14ch] text-[clamp(1.5rem,4vw,3.75rem)] font-bold leading-[0.95] tracking-[-0.045em] text-foreground/90">
+        <p className={cn("max-w-[14ch] text-[clamp(1.5rem,4vw,3.75rem)] font-bold leading-[0.95] tracking-[-0.045em] text-foreground/90", center && "mx-auto text-center")}>
           {title}
         </p>
       )}

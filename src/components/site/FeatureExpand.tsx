@@ -28,7 +28,7 @@ export function FeatureExpand({ project }: { project: Project }) {
         scrollTrigger: { trigger: sectionRef.current, start: "top top", end: "bottom bottom", scrub: 0.6 },
       });
       tl.fromTo(frameRef.current, { clipPath: "inset(16% 22% 16% 22%)" }, { clipPath: "inset(0% 0% 0% 0%)", ease: "none" }, 0);
-      tl.fromTo("[data-expand-inner]", { scale: 1.3 }, { scale: 1, ease: "none" }, 0);
+      tl.fromTo("[data-expand-inner]", { scale: 1.15 }, { scale: 1, ease: "none" }, 0);
       tl.fromTo("[data-expand-caption]", { autoAlpha: 0, y: 24 }, { autoAlpha: 1, y: 0, ease: "power2.out", duration: 0.3 }, 0.7);
     }, sectionRef);
     return () => ctx.revert();
@@ -47,6 +47,7 @@ export function FeatureExpand({ project }: { project: Project }) {
                   palette={project.palette}
                   aspect="wide"
                   reveal={!enabled}
+                  centerCover={enabled}
                   className={enabled ? "max-h-[calc(100vh-var(--header-height)-9rem)] w-full" : undefined}
                 />
               </div>

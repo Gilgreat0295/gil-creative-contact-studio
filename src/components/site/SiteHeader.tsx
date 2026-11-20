@@ -40,6 +40,7 @@ export function SiteHeader() {
         ).filter((el) => el.offsetParent !== null);
         const first = focusables[0];
         const last = focusables[focusables.length - 1];
+        if (!first || !last) return;
         if (e.shiftKey && document.activeElement === first) {
           e.preventDefault();
           last.focus();

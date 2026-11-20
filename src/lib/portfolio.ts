@@ -39,5 +39,5 @@ export function parseWorkCategory(
 
 export function getNextProject(slug: string, projects: Project[] = PROJECTS): Project {
   const i = projects.findIndex((p) => p.slug === slug);
-  return projects[(i + 1) % projects.length];
+  return projects[(i + 1) % projects.length]!;
 }
