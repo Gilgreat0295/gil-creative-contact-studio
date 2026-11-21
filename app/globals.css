@@ -12,8 +12,8 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * Gil Creative Co. design system — black editorial canvas with brand accents.
- * Black #0B0B0B · Deep teal #0F4C5C · Coral #FF6F61 · Cream #F2E9DC.
+ * Gil Creative Co. design system — dark-teal editorial canvas with brand accents.
+ * Deep teal #0F4C5C · Coral #FF6F61 · Cream #F2E9DC.
  */
 
 @theme inline {
@@ -71,10 +71,10 @@
   --radius: 0.125rem;
   --header-height: 4.5rem;
 
-  --background: #0b0b0b;
+  --background: #0f4c5c;
   --foreground: #f2e9dc;
-  --surface: #121212;
-  --surface-raised: #191919;
+  --surface: #124352;
+  --surface-raised: #185766;
   --card: var(--surface);
   --card-foreground: var(--foreground);
   --popover: var(--surface-raised);
@@ -82,14 +82,14 @@
 
   --primary: #f2e9dc;
   --primary-foreground: #0f4c5c;
-  --secondary: #0f4c5c;
+  --secondary: #185766;
   --secondary-foreground: #f2e9dc;
-  --muted: #121212;
+  --muted: #124352;
   --muted-foreground: #c9c8bf;
-  --accent: #0f4c5c;
-  --accent-foreground: #f2e9dc;
-  --signal: #55a8b8;
-  --signal-foreground: #0b0b0b;
+  --accent: #ff6f61;
+  --accent-foreground: #0f4c5c;
+  --signal: #ff6f61;
+  --signal-foreground: #0f4c5c;
   --destructive: #ff9a8f;
   --destructive-foreground: #0f4c5c;
 
@@ -97,7 +97,7 @@
   --input: rgb(242 233 220 / 28%);
   --line: rgb(242 233 220 / 10%);
   --line-strong: rgb(242 233 220 / 30%);
-  --ring: #55a8b8;
+  --ring: #ff6f61;
 
   --chart-1: #ff6f61;
   --chart-2: #f2e9dc;
