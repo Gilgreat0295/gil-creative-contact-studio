@@ -12,8 +12,8 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * Gil Creative Co. design system — cinematic, editorial and brand-led.
- * Deep teal #0F4C5C · Coral #FF6F61 · Cream #F2E9DC.
+ * Gil Creative Co. design system — black editorial canvas with brand accents.
+ * Black #0B0B0B · Deep teal #0F4C5C · Coral #FF6F61 · Cream #F2E9DC.
  */
 
 @theme inline {
@@ -71,10 +71,10 @@
   --radius: 0.125rem;
   --header-height: 4.5rem;
 
-  --background: #0f4c5c;
+  --background: #0b0b0b;
   --foreground: #f2e9dc;
-  --surface: #124352;
-  --surface-raised: #185766;
+  --surface: #121212;
+  --surface-raised: #191919;
   --card: var(--surface);
   --card-foreground: var(--foreground);
   --popover: var(--surface-raised);
@@ -82,9 +82,9 @@
 
   --primary: #f2e9dc;
   --primary-foreground: #0f4c5c;
-  --secondary: #185766;
+  --secondary: #0f4c5c;
   --secondary-foreground: #f2e9dc;
-  --muted: #124352;
+  --muted: #121212;
   --muted-foreground: #c9c8bf;
   --accent: #ff6f61;
   --accent-foreground: #0f4c5c;
