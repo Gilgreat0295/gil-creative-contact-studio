@@ -86,10 +86,10 @@
   --secondary-foreground: #f2e9dc;
   --muted: #121212;
   --muted-foreground: #c9c8bf;
-  --accent: #ff6f61;
-  --accent-foreground: #0f4c5c;
-  --signal: #ff6f61;
-  --signal-foreground: #0f4c5c;
+  --accent: #0f4c5c;
+  --accent-foreground: #f2e9dc;
+  --signal: #55a8b8;
+  --signal-foreground: #0b0b0b;
   --destructive: #ff9a8f;
   --destructive-foreground: #0f4c5c;
 
@@ -97,7 +97,7 @@
   --input: rgb(242 233 220 / 28%);
   --line: rgb(242 233 220 / 10%);
   --line-strong: rgb(242 233 220 / 30%);
-  --ring: #ff6f61;
+  --ring: #55a8b8;
 
   --chart-1: #ff6f61;
   --chart-2: #f2e9dc;
