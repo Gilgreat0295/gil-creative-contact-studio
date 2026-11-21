@@ -247,6 +247,41 @@ export const PROJECTS: Project[] = [
     ],
   },
   {
+    slug: "ba-sam-global-furniture",
+    title: "BA-SAM GLOBAL FURNITURE",
+    summary: "Brand identity work for BA-SAM GLOBAL FURNITURE.",
+    categories: ["branding"],
+    palette: ["#1C1A17", "#B79A72", "#F2EADF"],
+    cover: {
+      kind: "image",
+      alt: "BA-SAM GLOBAL FURNITURE branding project",
+      aspect: "landscape",
+      needs: "Brand identity cover · 2400×1600",
+    },
+    overview:
+      "A branding project for BA-SAM GLOBAL FURNITURE, presented as a complete project on Behance.",
+    role: "Brand identity designer.",
+    deliverables: ["Brand identity", "Brand presentation"],
+    direction:
+      "The identity gives the furniture brand a clear, recognisable presence across its core applications.",
+    behanceUrl:
+      "https://www.behance.net/gallery/198257509/Branding-BA-SAM-GLOBAL-FURNITURE",
+    sections: [
+      {
+        id: "brand-identity",
+        title: "Brand identity",
+        intro: "Explore the complete BA-SAM GLOBAL FURNITURE branding project on Behance.",
+        blocks: [
+          {
+            type: "text",
+            heading: "Complete project",
+            body: "The full identity presentation and project imagery are available through the Behance link above.",
+          },
+        ],
+      },
+    ],
+  },
+  {
     slug: "jims-collections",
     title: "JIMS COLLECTIONS",
     summary: "A provisional identity exploration for a perfumery, beauty and fashion brand.",
@@ -298,4 +333,3 @@ export const PROJECTS: Project[] = [
     ],
   },
 ];
-

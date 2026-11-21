@@ -95,7 +95,7 @@ export function CaseStudyView({ project }: { project: Project }) {
         <div className="md:col-span-5" data-reveal>
           <h2 className="text-eyebrow text-muted-foreground">Creative direction</h2>
           <p className="mt-4 text-foreground">{project.direction}</p>
-          {(project.liveUrl || project.prototypeUrl) && (
+          {(project.liveUrl || project.prototypeUrl || project.behanceUrl) && (
             <div className="mt-6 flex flex-wrap gap-6">
               {project.liveUrl && (
                 <a href={project.liveUrl} target="_blank" rel="noreferrer" className="group inline-flex items-center gap-2 font-semibold text-signal">
@@ -106,6 +106,12 @@ export function CaseStudyView({ project }: { project: Project }) {
               {project.prototypeUrl && (
                 <a href={project.prototypeUrl} target="_blank" rel="noreferrer" className="group inline-flex items-center gap-2 font-semibold text-signal">
                   <span className="link-line">View prototype</span>
+                  <ArrowUpRight aria-hidden="true" className="h-4 w-4" />
+                </a>
+              )}
+              {project.behanceUrl && (
+                <a href={project.behanceUrl} target="_blank" rel="noreferrer" className="group inline-flex items-center gap-2 font-semibold text-signal">
+                  <span className="link-line">View on Behance</span>
                   <ArrowUpRight aria-hidden="true" className="h-4 w-4" />
                 </a>
               )}
@@ -143,4 +149,3 @@ export function CaseStudyView({ project }: { project: Project }) {
     </article>
   );
 }
-

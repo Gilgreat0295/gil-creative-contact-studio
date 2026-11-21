@@ -67,6 +67,6 @@ export type Project = {
   direction: string;
   liveUrl?: string;
   prototypeUrl?: string;
+  behanceUrl?: string;
   sections: CaseSection[];
 };
-
