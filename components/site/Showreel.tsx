@@ -34,7 +34,14 @@ export function Showreel() {
           {poster ? (
             <img src={poster} alt="" className="absolute inset-0 h-full w-full object-cover" fetchPriority="high" />
           ) : (
-            <div aria-hidden="true" className="frame-grid absolute inset-0" />
+            <>
+              <div aria-hidden="true" className="frame-grid absolute inset-0" />
+              <img
+                src="/brand/gil-creative-icon.png"
+                alt=""
+                className="absolute -bottom-[24%] -right-[12%] w-[92%] max-w-[62rem] opacity-[0.12] sm:w-[66%]"
+              />
+            </>
           )}
           <div className="absolute inset-0 flex flex-col justify-between p-5 md:p-8">
             <div className="flex items-start justify-between text-eyebrow text-muted-foreground">
@@ -42,8 +49,8 @@ export function Showreel() {
               <span className="hidden sm:inline">Branding · Campaigns · Motion · Digital</span>
             </div>
             <div className="flex items-end justify-between gap-6">
-              <p aria-hidden={!src} className="text-[clamp(2.5rem,9vw,8.5rem)] font-bold leading-[0.85] tracking-[-0.06em] text-foreground">
-                Reel<span className="text-signal">.</span>
+              <p aria-hidden={!src} className="max-w-[8ch] text-[clamp(2.5rem,8vw,7.5rem)] font-bold leading-[0.85] tracking-[-0.06em] text-foreground">
+                Ideas in motion<span className="text-signal">.</span>
               </p>
               {src && (
                 <button
@@ -66,4 +73,3 @@ export function Showreel() {
     </div>
   );
 }
-

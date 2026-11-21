@@ -8,11 +8,16 @@ export function Wordmark({ onNavigate }: { onNavigate?: () => void }) {
     <Link
       href="/"
       onClick={onNavigate}
-      className="text-[1.05rem] font-bold tracking-[-0.04em] text-foreground transition-colors hover:text-signal"
+      className="block transition-opacity duration-300 hover:opacity-80"
       aria-label={`${site.name} — home`}
     >
-      Gil Creative Co<span className="text-signal">.</span>
+      <img
+        src="/brand/gil-creative-logo.png"
+        alt={site.name}
+        width={527}
+        height={77}
+        className="h-auto w-[10.5rem] sm:w-[12.5rem]"
+      />
     </Link>
   );
 }
-

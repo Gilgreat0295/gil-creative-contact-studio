@@ -12,8 +12,8 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * Gil Creative Co. design system — dark, cinematic, editorial.
- * Background #0B0B0B · Text #F4F1EB · Secondary #A7A7A7 · Signal #D7FF3F (used sparingly).
+ * Gil Creative Co. design system — cinematic, editorial and brand-led.
+ * Deep teal #0F4C5C · Coral #FF6F61 · Cream #F2E9DC.
  */
 
 @theme inline {
@@ -71,40 +71,39 @@
   --radius: 0.125rem;
   --header-height: 4.5rem;
 
-  --background: oklch(0.15 0 0);
-  --foreground: oklch(0.959 0.009 84.6);
-  --surface: oklch(0.185 0 0);
-  --surface-raised: oklch(0.226 0 0);
+  --background: #0f4c5c;
+  --foreground: #f2e9dc;
+  --surface: #124352;
+  --surface-raised: #185766;
   --card: var(--surface);
   --card-foreground: var(--foreground);
   --popover: var(--surface-raised);
   --popover-foreground: var(--foreground);
 
-  /* Primary buttons are cream on black; the signal colour stays for small details. */
-  --primary: oklch(0.959 0.009 84.6);
-  --primary-foreground: oklch(0.15 0 0);
-  --secondary: oklch(0.226 0 0);
-  --secondary-foreground: oklch(0.959 0.009 84.6);
-  --muted: oklch(0.185 0 0);
-  --muted-foreground: oklch(0.728 0 0);
-  --accent: oklch(0.226 0 0);
-  --accent-foreground: oklch(0.959 0.009 84.6);
-  --signal: oklch(0.94 0.208 121.1);
-  --signal-foreground: oklch(0.15 0 0);
-  --destructive: oklch(0.7 0.18 25);
-  --destructive-foreground: oklch(0.15 0 0);
+  --primary: #f2e9dc;
+  --primary-foreground: #0f4c5c;
+  --secondary: #185766;
+  --secondary-foreground: #f2e9dc;
+  --muted: #124352;
+  --muted-foreground: #c9c8bf;
+  --accent: #ff6f61;
+  --accent-foreground: #0f4c5c;
+  --signal: #ff6f61;
+  --signal-foreground: #0f4c5c;
+  --destructive: #ff9a8f;
+  --destructive-foreground: #0f4c5c;
 
-  --border: oklch(0.959 0.009 84.6 / 14%);
-  --input: oklch(0.959 0.009 84.6 / 22%);
-  --line: oklch(0.959 0.009 84.6 / 6%);
-  --line-strong: oklch(0.959 0.009 84.6 / 22%);
-  --ring: oklch(0.94 0.208 121.1);
+  --border: rgb(242 233 220 / 16%);
+  --input: rgb(242 233 220 / 28%);
+  --line: rgb(242 233 220 / 10%);
+  --line-strong: rgb(242 233 220 / 30%);
+  --ring: #ff6f61;
 
-  --chart-1: oklch(0.94 0.208 121.1);
-  --chart-2: oklch(0.728 0 0);
-  --chart-3: oklch(0.538 0 0);
-  --chart-4: oklch(0.285 0 0);
-  --chart-5: oklch(0.959 0.009 84.6);
+  --chart-1: #ff6f61;
+  --chart-2: #f2e9dc;
+  --chart-3: #5f8d98;
+  --chart-4: #185766;
+  --chart-5: #c9c8bf;
   --sidebar: var(--surface);
   --sidebar-foreground: var(--foreground);
   --sidebar-primary: var(--primary);

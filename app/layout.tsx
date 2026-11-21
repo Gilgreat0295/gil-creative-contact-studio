@@ -32,7 +32,10 @@ export const metadata: Metadata = {
     description: "Visual identities, campaigns, motion, video and websites by Gilbert Gospel Jacob.",
     images: ["/og.png"],
   },
-  icons: { icon: "/favicon.svg" },
+  icons: {
+    icon: "/brand/gil-creative-icon.png",
+    apple: "/brand/gil-creative-icon.png",
+  },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

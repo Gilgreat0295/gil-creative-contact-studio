@@ -47,10 +47,12 @@ export function SiteFooter() {
         </nav>
       </div>
       <div className="container-x flex flex-wrap items-center justify-between gap-4 border-t border-line py-6 text-eyebrow text-muted-foreground">
-        <span>© {site.name}</span>
+        <span className="flex items-center gap-3">
+          <img src="/brand/gil-creative-icon.png" alt="" className="h-7 w-auto opacity-80" />
+          © {site.name}
+        </span>
         <span>Design · Motion · Digital</span>
       </div>
     </footer>
   );
 }
-
