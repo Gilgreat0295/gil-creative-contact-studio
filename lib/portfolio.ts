@@ -29,16 +29,12 @@ export function hasPublishedWork(slug: CategorySlug, projects: Project[] = PROJE
   return projects.some((p) => p.categories.includes(slug));
 }
 
-/** Only categories with published work are valid filters; anything else falls back to All Work. */
-export function parseWorkCategory(
-  value: unknown,
-  projects: Project[] = PROJECTS,
-): CategorySlug | undefined {
-  return isCategorySlug(value) && hasPublishedWork(value, projects) ? value : undefined;
+/** Every service category remains selectable, even before its first case study is published. */
+export function parseWorkCategory(value: unknown): CategorySlug | undefined {
+  return isCategorySlug(value) ? value : undefined;
 }
 
 export function getNextProject(slug: string, projects: Project[] = PROJECTS): Project {
   const i = projects.findIndex((p) => p.slug === slug);
   return projects[(i + 1) % projects.length]!;
 }
-

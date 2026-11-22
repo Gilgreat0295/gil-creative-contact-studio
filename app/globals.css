@@ -12,7 +12,7 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * Gil Creative Co. design system — dark-teal editorial canvas with brand accents.
+ * Gil Creative Co. design system — deep-teal editorial canvas with brand accents.
  * Deep teal #0F4C5C · Coral #FF6F61 · Cream #F2E9DC.
  */
 
@@ -71,31 +71,31 @@
   --radius: 0.125rem;
   --header-height: 4.5rem;
 
-  --background: #0f4c5c;
+  --background: #082f38;
   --foreground: #f2e9dc;
-  --surface: #124352;
-  --surface-raised: #185766;
+  --surface: #0a3944;
+  --surface-raised: #0d4652;
   --card: var(--surface);
   --card-foreground: var(--foreground);
   --popover: var(--surface-raised);
   --popover-foreground: var(--foreground);
 
   --primary: #f2e9dc;
-  --primary-foreground: #0f4c5c;
-  --secondary: #185766;
+  --primary-foreground: #082f38;
+  --secondary: #0f4c5c;
   --secondary-foreground: #f2e9dc;
-  --muted: #124352;
+  --muted: #0a3944;
   --muted-foreground: #c9c8bf;
   --accent: #ff6f61;
-  --accent-foreground: #0f4c5c;
+  --accent-foreground: #082f38;
   --signal: #ff6f61;
-  --signal-foreground: #0f4c5c;
+  --signal-foreground: #082f38;
   --destructive: #ff9a8f;
-  --destructive-foreground: #0f4c5c;
+  --destructive-foreground: #082f38;
 
   --border: rgb(242 233 220 / 16%);
   --input: rgb(242 233 220 / 28%);
-  --line: rgb(242 233 220 / 10%);
+  --line: transparent;
   --line-strong: rgb(242 233 220 / 30%);
   --ring: #ff6f61;
 
@@ -254,11 +254,7 @@ html.lenis body {
 /* Subtle blueprint grid used inside empty media frames */
 @utility frame-grid {
   background-color: var(--color-surface);
-  background-image:
-    linear-gradient(to right, var(--color-line) 1px, transparent 1px),
-    linear-gradient(to bottom, var(--color-line) 1px, transparent 1px);
-  background-size: 48px 48px;
-  background-position: -1px -1px;
+  background-image: none;
 }
 
 /* Media zoom on hover inside a project link */

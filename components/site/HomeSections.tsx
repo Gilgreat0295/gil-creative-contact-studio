@@ -126,7 +126,14 @@ export function Services() {
               <span className="text-title text-foreground transition-transform duration-700 ease-cinematic group-hover:translate-x-2 md:col-span-4">
                 {c.label}
               </span>
-              <span className="text-muted-foreground md:col-span-3">{c.description}</span>
+              <span className="text-muted-foreground md:col-span-3">
+                {c.description}
+                {c.subcategories.length > 0 && (
+                  <span className="mt-3 block text-eyebrow text-foreground">
+                    {c.subcategories.join(" · ")}
+                  </span>
+                )}
+              </span>
               <span className="flex items-center gap-2 text-sm font-semibold text-foreground transition-colors group-hover:text-signal md:col-span-2 md:justify-end">
                 {published ? "See work" : "Enquire"}
                 <ArrowUpRight aria-hidden="true" className="h-4 w-4 transition-transform duration-500 ease-cinematic group-hover:rotate-45" />
