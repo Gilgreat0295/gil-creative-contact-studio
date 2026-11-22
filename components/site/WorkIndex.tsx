@@ -2,11 +2,12 @@
 
 import { useEffect, useRef } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { CATEGORIES, getCategory, type CategorySlug } from "@/content/categories";
+import type { CategorySlug } from "@/content/categories";
+import { getCategory } from "@/content/categories";
 import { PROJECTS } from "@/content/projects";
 import type { MediaAspect } from "@/content/types";
 import { ProjectCard } from "@/components/site/ProjectCard";
-import { parseWorkCategory, projectsInCategory } from "@/lib/portfolio";
+import { parseWorkCategory, projectsInCategory, publishedCategories } from "@/lib/portfolio";
 import { getGsap, prefersReducedMotion, useIsoLayoutEffect, useReveal } from "@/lib/motion";
 import { rememberWorkFilter } from "@/lib/work-filter-memory";
 import { cn } from "@/lib/utils";
@@ -23,7 +24,7 @@ export function WorkIndex() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const category = parseWorkCategory(searchParams.get("category"));
-  const filters = CATEGORIES;
+  const filters = publishedCategories();
   const projects = projectsInCategory(category);
   const pageRef = useRef<HTMLDivElement>(null);
   const gridRef = useRef<HTMLUListElement>(null);
@@ -112,47 +113,21 @@ export function WorkIndex() {
           </p>
         </div>
       </div>
-      {category === "visual-design" && (
-        <div className="container-x flex flex-wrap items-center gap-3 py-5">
-          <span className="text-eyebrow text-muted-foreground">Visual Design</span>
-          <ul className="flex flex-wrap gap-2" aria-label="Visual Design subcategories">
-            {getCategory("visual-design").subcategories.map((subcategory) => (
-              <li key={subcategory} className="bg-surface-raised px-3 py-2 text-sm text-foreground">
-                {subcategory}
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
       <p className="sr-only lg:hidden" aria-live="polite">
         {projects.length} {projects.length === 1 ? "project" : "projects"} in {label}
       </p>
 
-      {projects.length > 0 ? (
-        <ul ref={gridRef} className="container-x mt-14 grid gap-16 md:mt-20 md:grid-cols-12 md:gap-x-8 md:gap-y-24">
-          {projects.map((p, i) => {
-            const r = RHYTHM[i % RHYTHM.length]!;
-            return (
-              <li key={p.slug} className={cn(r.span, r.offset)}>
-                <ProjectCard project={p} aspect={r.aspect} headingLevel="h2" reveal={false} priority={i < 2} />
-              </li>
-            );
-          })}
-        </ul>
-      ) : (
-        <div className="container-x mt-14 md:mt-20">
-          <div className="max-w-2xl bg-surface p-8 md:p-12">
-            <p className="text-eyebrow text-signal">Projects coming soon</p>
-            <h2 className="mt-4 text-title text-foreground">{label}</h2>
-            <p className="mt-4 text-muted-foreground">
-              This service is available now. The first published case studies will appear here.
-            </p>
-            <a href="/#contact" className="link-line mt-8 inline-block font-semibold text-foreground hover:text-signal">
-              Start a project
-            </a>
-          </div>
-        </div>
-      )}
+      <ul ref={gridRef} className="container-x mt-14 grid gap-16 md:mt-20 md:grid-cols-12 md:gap-x-8 md:gap-y-24">
+        {projects.map((p, i) => {
+          const r = RHYTHM[i % RHYTHM.length]!;
+          return (
+            <li key={p.slug} className={cn(r.span, r.offset)}>
+              <ProjectCard project={p} aspect={r.aspect} headingLevel="h2" reveal={false} priority={i < 2} />
+            </li>
+          );
+        })}
+      </ul>
     </div>
   );
 }
+
