@@ -1,44 +1,62 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import { PageGrid } from "@/components/site/PageGrid";
-import { SiteFooter } from "@/components/site/SiteFooter";
-import { SiteHeader } from "@/components/site/SiteHeader";
-import { SmoothScroll } from "@/components/site/SmoothScroll";
-import "./globals.css";
+import type { Metadata } from 'next';
+import { Geist, Geist_Mono } from 'next/font/google';
+import { PageGrid } from '@/components/site/PageGrid';
+import { SiteFooter } from '@/components/site/SiteFooter';
+import { SiteHeader } from '@/components/site/SiteHeader';
+import { SmoothScroll } from '@/components/site/SmoothScroll';
+import './globals.css';
 
-const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
-const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
+const geistSans = Geist({ variable: '--font-geist-sans', subsets: ['latin'] });
+const geistMono = Geist_Mono({
+  variable: '--font-geist-mono',
+  subsets: ['latin'],
+});
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? '';
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ??
+  'https://gil-creative-co-portfolio.noisymimosa.chatgpt.site';
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://gil-creative-co-portfolio.noisymimosa.chatgpt.site"),
+  metadataBase: new URL(siteUrl),
   title: {
-    default: "Gil Creative Co. — Design with a point of view",
-    template: "%s — Gil Creative Co.",
+    default: 'Gil Creative Co. — Design with a point of view',
+    template: '%s — Gil Creative Co.',
   },
   description:
-    "Gil Creative Co. is the independent practice of Gilbert Gospel Jacob: branding, campaigns, motion, video and digital design.",
-  authors: [{ name: "Gilbert Gospel Jacob" }],
+    'Gil Creative Co. is the independent practice of Gilbert Gospel Jacob: branding, campaigns, motion, video and digital design.',
+  authors: [{ name: 'Gilbert Gospel Jacob' }],
   openGraph: {
-    title: "Gil Creative Co. — Design with a point of view",
-    description: "Visual identities, campaigns, motion, video and websites by Gilbert Gospel Jacob.",
-    url: "/",
-    siteName: "Gil Creative Co.",
-    type: "website",
-    images: [{ url: "/og.png", width: 1200, height: 630, alt: "Gil Creative Co. — Design with a point of view." }],
+    title: 'Gil Creative Co. — Design with a point of view',
+    description:
+      'Visual identities, campaigns, motion, video and websites by Gilbert Gospel Jacob.',
+    url: siteUrl,
+    siteName: 'Gil Creative Co.',
+    type: 'website',
+    images: [
+      {
+        url: `${basePath}/og.png`,
+        width: 1200,
+        height: 630,
+        alt: 'Gil Creative Co. — Design with a point of view.',
+      },
+    ],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "Gil Creative Co. — Design with a point of view",
-    description: "Visual identities, campaigns, motion, video and websites by Gilbert Gospel Jacob.",
-    images: ["/og.png"],
+    card: 'summary_large_image',
+    title: 'Gil Creative Co. — Design with a point of view',
+    description:
+      'Visual identities, campaigns, motion, video and websites by Gilbert Gospel Jacob.',
+    images: [`${basePath}/og.png`],
   },
   icons: {
-    icon: "/brand/gil-creative-icon.png",
-    apple: "/brand/gil-creative-icon.png",
+    icon: `${basePath}/brand/gil-creative-icon.png`,
+    apple: `${basePath}/brand/gil-creative-icon.png`,
   },
 };
 
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+export default function RootLayout({
+  children,
+}: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>

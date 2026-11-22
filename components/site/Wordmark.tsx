@@ -1,7 +1,8 @@
-"use client";
+'use client';
 
-import Link from "next/link";
-import { site } from "@/content/site";
+import Link from 'next/link';
+import { site } from '@/content/site';
+import { withBasePath } from '@/lib/base-path';
 
 export function Wordmark({ onNavigate }: { onNavigate?: () => void }) {
   return (
@@ -12,7 +13,7 @@ export function Wordmark({ onNavigate }: { onNavigate?: () => void }) {
       aria-label={`${site.name} — home`}
     >
       <img
-        src="/brand/gil-creative-logo.png"
+        src={withBasePath('/brand/gil-creative-logo.png')}
         alt={site.name}
         width={527}
         height={77}
